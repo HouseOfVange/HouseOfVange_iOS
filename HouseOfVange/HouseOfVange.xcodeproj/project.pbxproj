@@ -15,9 +15,16 @@
 		7755019027A3205F0013526B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7755018F27A3205F0013526B /* GoogleService-Info.plist */; };
 		775FCE7C27A327C400C5D561 /* PieceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775FCE7B27A327C400C5D561 /* PieceViewModel.swift */; };
 		775FCE7F27A329A400C5D561 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775FCE7E27A329A400C5D561 /* Piece.swift */; };
-		775FCE8527A3C5A300C5D561 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775FCE8427A3C5A300C5D561 /* DetailView.swift */; };
+		775FCE8527A3C5A300C5D561 /* PieceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775FCE8427A3C5A300C5D561 /* PieceDetailView.swift */; };
+		7765A45D27AB2FD70015CE20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765A45C27AB2FD70015CE20 /* User.swift */; };
+		7765A45F27AB30DE0015CE20 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765A45E27AB30DE0015CE20 /* LoginView.swift */; };
+		7765A46127AB33820015CE20 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765A46027AB33820015CE20 /* CreateAccountView.swift */; };
+		7765A46727AB53780015CE20 /* MovingNumbersView in Frameworks */ = {isa = PBXBuildFile; productRef = 7765A46627AB53780015CE20 /* MovingNumbersView */; };
+		7794FE8A27A8962E00AA0513 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794FE8927A8962E00AA0513 /* ShopView.swift */; };
+		7794FE8C27A8964500AA0513 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794FE8B27A8964500AA0513 /* ShopViewModel.swift */; };
 		77E6911C27A4954B000DADC3 /* GuestBookPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E6911B27A4954B000DADC3 /* GuestBookPost.swift */; };
 		77E6911E27A495F4000DADC3 /* GuestBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E6911D27A495F4000DADC3 /* GuestBookViewModel.swift */; };
+		77FA4EFE27AA10370045763E /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 77FA4EFD27AA10370045763E /* MarqueeText */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +36,12 @@
 		7755018F27A3205F0013526B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		775FCE7B27A327C400C5D561 /* PieceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceViewModel.swift; sourceTree = "<group>"; };
 		775FCE7E27A329A400C5D561 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
-		775FCE8427A3C5A300C5D561 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		775FCE8427A3C5A300C5D561 /* PieceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDetailView.swift; sourceTree = "<group>"; };
+		7765A45C27AB2FD70015CE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7765A45E27AB30DE0015CE20 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7765A46027AB33820015CE20 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		7794FE8927A8962E00AA0513 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		7794FE8B27A8964500AA0513 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		77E6911B27A4954B000DADC3 /* GuestBookPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestBookPost.swift; sourceTree = "<group>"; };
 		77E6911D27A495F4000DADC3 /* GuestBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestBookViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,7 +51,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77FA4EFE27AA10370045763E /* MarqueeText in Frameworks */,
 				7755018E27A237760013526B /* FirebaseFirestore in Frameworks */,
+				7765A46727AB53780015CE20 /* MovingNumbersView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				7755014927A224BF0013526B /* ContentView.swift */,
-				775FCE8427A3C5A300C5D561 /* DetailView.swift */,
+				775FCE8427A3C5A300C5D561 /* PieceDetailView.swift */,
+				7794FE8927A8962E00AA0513 /* ShopView.swift */,
+				7765A45E27AB30DE0015CE20 /* LoginView.swift */,
+				7765A46027AB33820015CE20 /* CreateAccountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -98,6 +115,7 @@
 			children = (
 				775FCE7B27A327C400C5D561 /* PieceViewModel.swift */,
 				77E6911D27A495F4000DADC3 /* GuestBookViewModel.swift */,
+				7794FE8B27A8964500AA0513 /* ShopViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -107,6 +125,7 @@
 			children = (
 				775FCE7E27A329A400C5D561 /* Piece.swift */,
 				77E6911B27A4954B000DADC3 /* GuestBookPost.swift */,
+				7765A45C27AB2FD70015CE20 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +148,8 @@
 			name = HouseOfVange;
 			packageProductDependencies = (
 				7755018D27A237760013526B /* FirebaseFirestore */,
+				77FA4EFD27AA10370045763E /* MarqueeText */,
+				7765A46627AB53780015CE20 /* MovingNumbersView */,
 			);
 			productName = HouseOfVange;
 			productReference = 7755014427A224BF0013526B /* HouseOfVange.app */;
@@ -160,6 +181,8 @@
 			mainGroup = 7755013B27A224BF0013526B;
 			packageReferences = (
 				7755018C27A237760013526B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				77FA4EFC27AA10370045763E /* XCRemoteSwiftPackageReference "MarqueeText" */,
+				7765A46527AB53780015CE20 /* XCRemoteSwiftPackageReference "MovingNumbersView" */,
 			);
 			productRefGroup = 7755014527A224BF0013526B /* Products */;
 			projectDirPath = "";
@@ -193,8 +216,13 @@
 				7755014A27A224BF0013526B /* ContentView.swift in Sources */,
 				775FCE7C27A327C400C5D561 /* PieceViewModel.swift in Sources */,
 				77E6911C27A4954B000DADC3 /* GuestBookPost.swift in Sources */,
-				775FCE8527A3C5A300C5D561 /* DetailView.swift in Sources */,
+				775FCE8527A3C5A300C5D561 /* PieceDetailView.swift in Sources */,
+				7765A46127AB33820015CE20 /* CreateAccountView.swift in Sources */,
+				7794FE8A27A8962E00AA0513 /* ShopView.swift in Sources */,
 				7755014827A224BF0013526B /* HouseOfVangeApp.swift in Sources */,
+				7765A45F27AB30DE0015CE20 /* LoginView.swift in Sources */,
+				7765A45D27AB2FD70015CE20 /* User.swift in Sources */,
+				7794FE8C27A8964500AA0513 /* ShopViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +435,22 @@
 				kind = branch;
 			};
 		};
+		7765A46527AB53780015CE20 /* XCRemoteSwiftPackageReference "MovingNumbersView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aunnnn/MovingNumbersView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		77FA4EFC27AA10370045763E /* XCRemoteSwiftPackageReference "MarqueeText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joekndy/MarqueeText";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -414,6 +458,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7755018C27A237760013526B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		7765A46627AB53780015CE20 /* MovingNumbersView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7765A46527AB53780015CE20 /* XCRemoteSwiftPackageReference "MovingNumbersView" */;
+			productName = MovingNumbersView;
+		};
+		77FA4EFD27AA10370045763E /* MarqueeText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77FA4EFC27AA10370045763E /* XCRemoteSwiftPackageReference "MarqueeText" */;
+			productName = MarqueeText;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -10,7 +10,7 @@ import Firebase
 
 class PieceViewModel: ObservableObject {
     
-    @Published var list = [Piece]()
+    @Published var pieces = [Piece]()
     
 //    func writePriceList(){
 //        var prices: [Int] = []
@@ -39,18 +39,19 @@ class PieceViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         
                         //get all documents and create pieces
-                        self.list = snapshot.documents.map { d in
+                        self.pieces = snapshot.documents.map { d in
                             
                             // create a Piece item for each document returned
                             return Piece(id: d.documentID,
                                          price: d["price"] as? Int ?? 9999,
                                          description: d["description"] as? String ?? "",
-                                         client_name: d["client_name"] as? String ?? "",
+                                         client_name: d["client_name"] as? String ?? "~CLIENT NAME COMING SOON~",
                                          client_contact_info: d["client_contact_info"] as? String ?? "",
                                          order_date: d["order_date"] as? String ?? "",
                                          delivery_date: d["delivery_date"] as? String ?? "",
                                          img_url: d["img_url"] as? String ?? "",
-                                         purchased: d["purchased"] as? Bool ?? false)
+                                         purchased: d["purchased"] as? Bool ?? false,
+                                        year_created: d["year_created"] as? String ?? "1989")
                         }
                     }
                     

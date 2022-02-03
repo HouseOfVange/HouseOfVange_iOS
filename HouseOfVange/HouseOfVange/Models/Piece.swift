@@ -18,5 +18,5 @@ struct Piece: Identifiable {
     var delivery_date: String
     var img_url: String
     var purchased: Bool
-    
+    var year_created: String
 }

@@ -83,6 +83,24 @@
         }
       },
       {
+        "package": "MarqueeText",
+        "repositoryURL": "https://github.com/joekndy/MarqueeText",
+        "state": {
+          "branch": "master",
+          "revision": "6e2e936ba7d82388ff4b191b2c234e52ce8d9e98",
+          "version": null
+        }
+      },
+      {
+        "package": "MovingNumbersView",
+        "repositoryURL": "https://github.com/aunnnn/MovingNumbersView.git",
+        "state": {
+          "branch": null,
+          "revision": "89dd0f149de0b89831f0bc5f6bc36daddf9a9eeb",
+          "version": "0.1.0"
+        }
+      },
+      {
         "package": "nanopb",
         "repositoryURL": "https://github.com/firebase/nanopb.git",
         "state": {
