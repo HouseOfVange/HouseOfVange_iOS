@@ -1,30 +1,69 @@
-//
-//  LoginView.swift
-//  HouseOfVange
-//
-//  Created by Evangeline Spracklin on 2/2/22.
-//
 
-import Foundation
 import SwiftUI
 
 struct LoginView: View {
     
-    @State private var hov_username = ""
-    @State private var hov_password = ""
+    @State private var email = ""
+    @State private var password = ""
+
+    @EnvironmentObject var viewModel: AppViewModel
     
     var body: some View {
-    
+        
         VStack{
-            Text("LOGIN").font(.largeTitle).bold().foregroundColor(.red)
-            NavigationLink(destination: CreateAccountView()){
-                Text("create account")
-            }
-            Form{
-                TextField("Username", text: $hov_username)
-                TextField("Password", text: $hov_password)
+//            Spacer()
+            
+            Image("HOV_LOGO")
+            
+            Spacer()
+            HStack{
+                Text("The time to login... is now!")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.red)
+//                    .scaledToFill()
+                    .multilineTextAlignment(.center)
+                    .frame(alignment: .leading)
+//                    .frame(alignment: .center)
+//                    .padding()
+//                    .padding(40)
+//                    .font(.system(size: 300))
+//                    .minimumScaleFactor(0.01)
+                    
+            }.padding()
+            //                Form{
+            TextField("email", text: $email)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+            
+            SecureField("Password", text: $password)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+            
+            Button(action: {
+                guard !email.isEmpty, !password.isEmpty else {
+                    return
                 }
-            }
-        .pickerStyle(.segmented)
+                viewModel.signIn(email: email, password: password)
+            }, label: {
+                Text("Enter House")
+                    .foregroundColor(Color.white)
+                    .frame(width: 200, height: 50)
+                    .background(Color.red)
+                    .cornerRadius(8)
+            })
+            
+            NavigationLink("Create Account", destination: SignUpView())
+                .padding()
+            
+            Spacer()
         }
-    }
+        .padding()
+        
+//        Spacer()
+        
+    }}

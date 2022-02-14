@@ -7,10 +7,13 @@
 
 import Foundation
 
-struct User {
+struct User: Identifiable {
     
     var id: String
     var username: String
-    var num_purchases: Int
+    var email: String
+    var cc_num: String
+    var purchases: [Int]
+    var date_joined_app: Date
     
 }

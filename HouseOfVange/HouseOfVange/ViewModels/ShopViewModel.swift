@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct ShopViewModel: View {
+class ShopViewModel: ObservableObject {
     @State var username: String = ""
+    
         
         var body: some View {
             NavigationView {

@@ -14,17 +14,40 @@ struct PieceDetailView: View {
     var body: some View {
         
         VStack {
-            Text("The ")
-            + Text("\(piece.description)").bold()
-            + Text(" (\(piece.year_created)) was purchased by \(piece.client_name) for $1.")
             
-            
-            AsyncImage(url: URL(string: "\(piece.img_url)")) { image in
-                image.resizable()
-            } placeholder: {
-                Color.red
+            if piece.purchased == true && piece.is_finished == true{
+                
+                VStack{
+                    Text("The ")
+                    + Text("\(piece.description)").bold()
+                    + Text(" (\(piece.year_created)) was purchased by \(piece.client_name) for $\(piece.price).")
+
+
+                    AsyncImage(url: URL(string: "\(piece.img_url)")) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Color.red
+                    }
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 300, height: 300)
+                    .padding()
+                }
+                .padding()
             }
-            .frame(width: 300, height: 300)
+
+            else if piece.purchased && piece.is_finished == false {
+
+                Text("The price point $\(piece.price) has been purchased by \(piece.client_name) and the piece is in the process of becoming.")
+                    .padding()
+
+                AsyncImage(url: URL(string: "https://firebasestorage.googleapis.com/v0/b/house-of-vange-ios.appspot.com/o/egg_cracking.gif?alt=media&token=aa65c6ae-a8ef-49d3-8ced-68f1efc0ea9b")) { image in
+                                image.resizable()
+                            } placeholder: {
+                                Color.red
+                            }
+                            .frame(width: 300, height: 300)
+
+            }
         }
         
         

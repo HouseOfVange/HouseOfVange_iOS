@@ -1,13 +1,13 @@
 //
-//  Piece.swift
+//  PieceTest.swift
 //  HouseOfVange
 //
-//  Created by Evangeline Spracklin on 1/27/22.
+//  Created by Evangeline Spracklin on 2/7/22.
 //
 
 import Foundation
 
-struct Piece: Identifiable {
+struct PieceTest: Identifiable {
     
     var id: String
     var doc_id: String
