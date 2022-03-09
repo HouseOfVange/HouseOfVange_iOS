@@ -10,8 +10,8 @@ import Foundation
 struct GuestBookPost: Identifiable {
     
     var id: String
-    var user: String
+    var username: String
     var message: String
-    var date: String
+    var date: Date
     
 }

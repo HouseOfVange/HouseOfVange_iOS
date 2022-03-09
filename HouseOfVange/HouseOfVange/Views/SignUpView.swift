@@ -20,13 +20,23 @@ struct SignUpView: View {
     
     var body: some View {
         
-        NavigationView{
-            VStack{
+//        NavigationView{
+            
                 
                 VStack{
                     
-                    Text("The time to create an account is now!").font(.largeTitle).bold().foregroundColor(.red)
-                        .padding()
+                    Image("HOV_LOGO2")
+                    
+                    Spacer()
+                    HStack{
+                        Text("The time to create an account is now!")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                            .frame(alignment: .leading)
+                            
+                    }.padding()
                     
                     //                Form{
                     TextField("email", text: $email)
@@ -63,14 +73,16 @@ struct SignUpView: View {
                             .cornerRadius(8)
                     }
                     )
+                    Spacer()
                     
                 }
                 .padding()
                 
                 Spacer()
                 
-            }
-        }
+            
+//        }
+        Spacer()
         //        .navigationTitle("The time to login is now!")
     }
 }

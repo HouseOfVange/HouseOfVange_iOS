@@ -11,9 +11,8 @@ struct LoginView: View {
     var body: some View {
         
         VStack{
-//            Spacer()
             
-            Image("HOV_LOGO")
+            Image("HOV_LOGO2")
             
             Spacer()
             HStack{
@@ -21,15 +20,10 @@ struct LoginView: View {
                     .font(.largeTitle)
                     .bold()
                     .foregroundColor(.red)
-//                    .scaledToFill()
                     .multilineTextAlignment(.center)
                     .frame(alignment: .leading)
-//                    .frame(alignment: .center)
-//                    .padding()
-//                    .padding(40)
-//                    .font(.system(size: 300))
-//                    .minimumScaleFactor(0.01)
-                    
+    
+                
             }.padding()
             //                Form{
             TextField("email", text: $email)
@@ -64,6 +58,6 @@ struct LoginView: View {
         }
         .padding()
         
-//        Spacer()
-        
-    }}
+        Spacer()
+    }
+}

@@ -18,7 +18,6 @@ class AppViewModel: ObservableObject {
     @ObservedObject var users = UserViewModel()
     
     @Published var currentUserEmail: String = "koala~"
-    //    var currentUserUID: String = "44444444444444~~~~55555555~~~666666"
     
     @Published var signedIn = false
     
@@ -39,8 +38,6 @@ class AppViewModel: ObservableObject {
                 // Success
                 self?.signedIn = true
                 self?.currentUserEmail = self!.auth.currentUser!.email!
-                //                self?.currentUserUID = self!.auth.currentUser!.uid
-                //                print("LOOOOOOOOK HERE inside signin *&*&*& \(self?.currentUserEmail)")
             }
             
         }
@@ -57,11 +54,7 @@ class AppViewModel: ObservableObject {
                 // Success
                 self?.signedIn = true
                 self?.currentUserEmail = self!.auth.currentUser!.email!
-                //                print("BBBBBBBUUUU^^^^ inside signup *&*&*& \(self?.currentUserEmail)")
-                
-                // ADD NEW USER INSTANCE HERE!
                 self!.users.addUser(username: username, email: email)
-                
             }
         }
     }

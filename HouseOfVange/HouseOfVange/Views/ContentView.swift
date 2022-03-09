@@ -18,7 +18,6 @@ struct ContentView: View{
         
         MarqueeView()
         NavigationView {
-            
             if viewModel.signedIn && viewModel.viewProfile {
                 UserProfileView()
             } else if viewModel.signedIn && !viewModel.viewProfile{
@@ -31,9 +30,7 @@ struct ContentView: View{
         .onAppear {
             viewModel.signedIn = viewModel.isSignedIn
         }
-        
         MarqueeView()
-        
     }
 }
 

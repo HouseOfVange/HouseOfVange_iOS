@@ -15,5 +15,6 @@ struct User: Identifiable {
     var cc_num: String
     var purchases: [Int]
     var date_joined_app: Date
+    var sum_spent: Int
     
 }

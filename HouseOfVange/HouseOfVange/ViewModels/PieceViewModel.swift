@@ -12,39 +12,32 @@ class PieceViewModel: ObservableObject {
     
     @Published var pieces = [Piece]()
     
-    
-//    func addData(username: String, cc_num: String){
-//        let db = Firestore.firestore()
-//        
-//        db.collection("users").addDocument(data: ["username" : username, "cc_num" : cc_num]) { error in
-//            if error == nil {
-//                self.getData()
-//            }
-//        }
-//    }
-    
     func addUser(username: String, email: String){
         let db = Firestore.firestore()
         
         db.collection("users").addDocument(data: ["username" : username, "email": email]) { error in
             if error == nil {
-                self.getData()
+                self.getPieceData()
             }
         }
     }
     
-    func updatePieceBeingPurchased(pieceToUpdate: Piece) {
+    func updatePieceBeingPurchased(pieceToUpdate: Piece, description: String, email: String) {
         
         let db = Firestore.firestore()
         
-        db.collection("pieces").document(pieceToUpdate.id).setData(["purchased" : true, "order_date": Date.now], merge: true) { error in
+        db.collection("pieces").document(pieceToUpdate.id).setData([
+            "purchased" : true,
+            "order_date": Date.now,
+            "description": description,
+            "owner_email": email], merge: true) { error in
             if error == nil {
-                self.getData()
+                self.getPieceData()
             }
         }
     }
     
-    func getData(){
+    func getPieceData(){
         
         // get a reference to the database
         let db = Firestore.firestore()
@@ -63,7 +56,7 @@ class PieceViewModel: ObservableObject {
                         
                         //get all documents and create pieces
                         self.pieces = snapshot.documents.map { d in
-                            
+                        
                             // create a Piece item for each document returned
                             return Piece(id: d.documentID,
                                          doc_id: d["doc_id"] as? String ?? "",

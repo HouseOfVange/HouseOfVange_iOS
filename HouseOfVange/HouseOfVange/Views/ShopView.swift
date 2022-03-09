@@ -10,99 +10,132 @@ import SwiftUI
 
 struct ShopView: View {
     
-    //    @State private var name = ""
-    //    @State private var contactinfo = ""
-    //    @State private var whatwant = ""
-    //    @State private var isTrue = "true"
-//    @State private var confirmationShown = false
-    
-    var price: Int
-    
     @EnvironmentObject var viewModel: AppViewModel
-    var pieces: PieceViewModel
-    var prices: PriceViewModel
     @ObservedObject var users = UserViewModel()
-    
+    @ObservedObject var pieces = PieceViewModel()
+    @ObservedObject var the_price = PriceViewModel()
     
 //    @State var username = ""
     @State var cc_num = ""
     @State var fullname = ""
+    @State var description = ""
+    @State var phone_num = ""
     
     @State var bought: Bool = false
-//    private var current_user: User
+    @State private var showCongratsAlert = false
     
     var body: some View {
         
-        VStack(spacing:5){
+        if bought {
+            //                Text("Congratulations! You purchased")
+            //                Congratulations(price: prices.the_price)
+            Congratulations()
             
-            if bought {
-                Text("Congratulations!")
-//                Congratulations(price: prices.the_price)
-            }
+        } else {
             
-            Text("This deal won't last forever, act fast!")
-            Text("$\(pieces.pieces[price-1].price)")
-            Text("It'll never be cheaper!")
-            
-            Spacer()
-            
-            TextField("full name", text: $fullname)
-                .disableAutocorrection(true)
-                .autocapitalization(.none)
+            VStack{
+                
+                NavBannerView()
+//                Spacer()
+                
+                Text("This deal won't last forever, act fast!")
+                    .bold().italic()
+                Text("$\(the_price.the_price)").onAppear {
+                    users.getCurrentUsername(email: viewModel.currentUserEmail)
+                    users.getPurchases(email: viewModel.currentUserEmail)
+                }
+                
+                Spacer()
+
+                
+                VStack {
+//                    List{
+                        TextField("full name", text: $fullname)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                        
+                        TextField("phone", text: $phone_num)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                        
+                        //            Text("required")
+                        //                .foregroundColor(.red)
+                        //                .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                        TextField("credit card number", text: $cc_num)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                        //                .isNumeric
+                        
+                        TextField("what would you like?", text: $description)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                    
+                        Button {
+                            print("purchased")
+                            
+                            //PIECES COLLECTTION UPDATE
+                            // update piece document with purchased = true, order date = Date.now, description = $description, username = username of current user
+                            pieces.updatePieceBeingPurchased(pieceToUpdate: pieces.pieces[the_price.the_price - 1], description: description, email: viewModel.currentUserEmail)
+                            
+                            
+                            // PRICE COLLECTION UPDATE
+                            // increase price +1
+                            the_price.increasePrice(priceToIncrease: the_price.the_price)
+                
+                            
+                            //USER COLLECTION UPDATES
+                            // update user document with price appended to purchases, and a sum spent, and cc num
+                            users.updatePurchases(userToUpdateID: viewModel.currentUserEmail, price: the_price.the_price)
+                            
+                            users.updateSumSpent(email: viewModel.currentUserEmail)
+                            
+                            users.updateUserCCNum(userToUpdateID: viewModel.currentUserEmail, cc_num: cc_num)
+                            
+                            
+                            //SHOP VIEW FIELDS RESET
+                            //reset text fields
+                            fullname = ""
+                            phone_num = ""
+                            cc_num = ""
+                            description = ""
+                            
+                            //change bought to true
+                            bought.toggle()
+                            
+                            //change to congrats alert true
+                            showCongratsAlert = true
+                            
+                        } label: {
+                            Text("CLICK TO BUY")
+                        }
+                        .foregroundColor(Color.white)
+                        .frame(width: 200, height: 50)
+                        .background(Color.red)
+                        .disabled(cc_num.isEmpty || description.isEmpty || fullname.isEmpty)
+//                    }
+                    
+                    Spacer()
+                }
                 .padding()
-                .background(Color(.secondarySystemBackground))
-            
-            TextField("credit card number", text: $cc_num)
-                .disableAutocorrection(true)
-                .autocapitalization(.none)
-                .padding()
-                .background(Color(.secondarySystemBackground))
-//                .isNumeric
-            
-            Spacer()
-            
-            Button {
-                print("purchased")
                 
-                // update piece document with purchased = true, order date = Date.now
-                pieces.updatePieceBeingPurchased(pieceToUpdate: pieces.pieces[price-1])
-                
-                // increase price +1
-                prices.increasePrice(priceToIncrease: prices.the_price)
-                
-                //get purchases
-                users.getPurchases(email: viewModel.currentUserEmail)
-                
-                // update user document with price appended to purchases, and a
-                users.updatePurchases(userToUpdateID: viewModel.currentUserEmail, price: price)
-                
-//                , purchases: users.purchases
-                
-                // update user's credit card number
-                users.updateUserCCNum(userToUpdateID: viewModel.currentUserEmail, cc_num: cc_num)
-//
-                //reset text fields
-//                username = ""
-                fullname = ""
-                cc_num = ""
-                //change bought to true
-                bought.toggle()
-    
-                
-                //update user data with cc_num, add price point to [purchases] list
-//                pieces.addData(username: username, cc_num: cc_num)
-                
-                //refresh pieces
-//                pieces.getData()
-                
-            } label: {
-                Text("CLICK TO BUY")
             }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 50)
-            .background(Color.red)
-            .cornerRadius(8)
+            Spacer()
         }
-        
+    }
+    
+    
+    init() {
+        pieces.getPieceData()
+        users.getUserData()
+        the_price.getPrice()
     }
 }

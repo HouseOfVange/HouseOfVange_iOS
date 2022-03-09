@@ -7,14 +7,25 @@
 
 import Foundation
 import Firebase
+import SwiftUI
 
 class UserViewModel: ObservableObject {
     
     @Published var users = [User]()
     
     @Published var purchases: [Int] = []
-    @Published var sum: Int = 0
-    @Published var currentUsername: String = ""
+    @Published var sum_spent: Int = 0
+    @Published var currentUsername: String = "SHRIMP HEAD"
+    @Published var percentOfBiz: Int = 0
+//    @Published var date_joined_app: Date.now
+    
+    func getPercentOfBiz(count: Int, price: Int){
+        let num = count/price
+        self.percentOfBiz = num*100
+//        self.percentOfBiz = 777
+        print(self.percentOfBiz)
+        self.getUserData()
+    }
     
     func addUser(username: String, email: String){
         
@@ -28,7 +39,8 @@ class UserViewModel: ObservableObject {
             "cc_num": "0",
             "phone number": "",
             "date_joined_app": Date.now,
-            "app_seshes": []
+            "app_seshes": [],
+            "sum_spent": 0
         ]
         
         let docRef = db.collection("users").document(email)
@@ -57,7 +69,7 @@ class UserViewModel: ObservableObject {
    
     // get number of purchases
     func getPurchases(email: String){
-        print("user bought hekka shrimp")
+//        print("user bought hekka shrimp")
         
         let db = Firestore.firestore()
         
@@ -72,23 +84,21 @@ class UserViewModel: ObservableObject {
                 if let document = document, document.exists {
                     let data = document.data()
                     if let data = data {
-                        print("data", data)
+                        print("PRICES PURCHASE ARE:", data)
                         self.purchases = data["purchases"] as? [Int] ?? [0]
                     }
                 }
                 self.getUserData()
-
+//                print(self.purchases)
+//                print("   old purchases list ---- ^^ LOOK HERE  VANGE    ")
             }
-        
-//        print(purchases)
 
     }
         
     //update purchases list
     func updatePurchases(userToUpdateID: String, price: Int) {
+//        self.getPurchases(email: userToUpdateID)
         
-//    purchases: Array<Int>
-
         let db = Firestore.firestore()
         
         self.purchases.append(price)
@@ -96,35 +106,52 @@ class UserViewModel: ObservableObject {
         db.collection("users").document(userToUpdateID).setData(["purchases" : purchases], merge: true) { error in
             if error == nil {
                 self.getUserData()
+//                print(self.purchases)
+//                print("   new purchases list ---- ^^ LOOK HERE  VANGE    ")
             }
         }
-        print(self.purchases)
     }
-    
-    func sumPurchases(email: String) {
-        
+ 
+    func updateSumSpent(email: String){
         let db = Firestore.firestore()
-//        self.getUserData()
-//        sum = 0
-        for purchase in self.purchases {
-            print(sum)
-            print(purchase)
-            sum = sum + purchase
-            print(sum)
-            print(".............................**")
-        }
-        print("$\(sum) invested!!!!!")
         
-        db.collection("users").document(userToUpdateID).setData(["sum_spent" : sum], merge: true) { error in
+        let theSum: Int = self.purchases.reduce(0, +)
+        
+        self.sum_spent = theSum
+        
+        db.collection("users").document(email).setData(["sum_spent": theSum], merge: true) { error in
             if error == nil {
                 self.getUserData()
             }
         }
-//        return sum
+        
+    }
+    
+    func getSumSpent(email: String){
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("users").document(email)
+
+            docRef.getDocument { (document, error) in
+                guard error == nil else {
+                    print("error", error ?? "")
+                    return
+                }
+
+                if let document = document, document.exists {
+                    let data = document.data()
+                    if let data = data {
+                        print("data", data)
+                        self.sum_spent = data["sum_spent"] as? Int ?? 206
+                    }
+                }
+                self.getUserData()
+                print(self.sum_spent)
+            }
     }
     
     func getCurrentUsername(email: String){
-        print("user bought hekka shrimp")
+//        print("user bought hekka shrimp")
         
         let db = Firestore.firestore()
         
@@ -142,11 +169,16 @@ class UserViewModel: ObservableObject {
                         print("data", data)
                         self.currentUsername = data["username"] as? String ?? "CHEVY CHASE lol"
                     }
+                    self.getUserData()
+                    print(self.currentUsername)
                 }
-                self.getUserData()
-                print(self.currentUsername)
+//                self.getUserData()
+//                print(self.currentUsername)
             }
     }
+    
+
+    
     
     func getUserData(){
         
@@ -174,7 +206,8 @@ class UserViewModel: ObservableObject {
                                         email: d["email"] as? String ?? "",
                                         cc_num: d["cc_num"] as? String ?? "",
                                         purchases: d["purchases"] as? [Int] ?? [],
-                                        date_joined_app: d["date_joined_app"] as? Date ?? Date.now
+                                        date_joined_app: d["date_joined_app"] as? Date ?? Date.now,
+                                        sum_spent: d["sum_spent"] as? Int ?? 0
                             )
                         }
                     }

@@ -27,8 +27,9 @@ class PriceViewModel: ObservableObject {
             if let document = document, document.exists {
                 let data = document.data()
                 if let data = data {
-                    print("data", data)
-                    self.the_price = data["currentPrice"] as? Int ?? 0
+                    print("***** wow price data *********", data["currentPrice"]!)
+                    self.the_price = data["currentPrice"]! as? Int ?? 0
+                    print(self.the_price)
                 }
             }
             
@@ -37,7 +38,7 @@ class PriceViewModel: ObservableObject {
     
     func increasePrice(priceToIncrease: Int){
         let db = Firestore.firestore()
-    
+        
         db.collection("price").document("price").setData(["currentPrice" : priceToIncrease + 1]) { error in
             if error == nil {
                 self.getPrice()
@@ -45,15 +46,4 @@ class PriceViewModel: ObservableObject {
         }
         
     }
-    
-//    func updatePieceBeingPurchased(pieceToUpdate: Piece) {
-//
-//        let db = Firestore.firestore()
-//
-//        db.collection("pieces_test").document(pieceToUpdate.id).setData(["purchased" : true, "order_date": "TODAY"], merge: true) { error in
-//            if error == nil {
-//                self.getData()
-//            }
-//        }
-//    }
 }
