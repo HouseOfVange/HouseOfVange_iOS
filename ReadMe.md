@@ -13,13 +13,13 @@ Check out a demo here: https://youtu.be/rErJ7Rbkz0s
 This culminating project for Ada C16 was a blast to create. A challenging blast, but a blast no less. 
 
 I learned 
--how to navigate Xcode
--write code in SwiftUI
--manage data on Firebase Firestore
--authenticate users with Firebase Auth
--import a csv file to firestore with a custom script
--transmute an art project to a new medium
--report progress to my group
--have compassion for myself after my app froze during the demo
+- how to navigate Xcode
+- write code in SwiftUI
+- manage data on Firebase Firestore
+- authenticate users with Firebase Auth
+- import a csv file to firestore with a custom script
+- transmute an art project to a new medium
+- report progress to my group
+- have compassion for myself after my app froze during the demo
 
 Many many thanks to the Spruce gang <3 <3 <3
