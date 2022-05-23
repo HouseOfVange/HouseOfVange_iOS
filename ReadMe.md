@@ -1,6 +1,6 @@
 ## House of Vange iOS App
 
-This app brings the spirit of House of Vange (a performance/brand/biz/troll/art project/experiment) right to the hands of the user. Features include authenticated users, virtual gallery of completed HOV pieces, user stats (how much $ they've invested and how many pieces they have purchased), performative ecommerce, a guestbook to sign, an almost endless scroll, and a live updating price.
+This app brings the spirit of [House of Vange](https://houseofvange.com/) (a performance/[brand](https://www.instagram.com/houseofvange/)/biz/troll/art project/experiment) right to the hands of the user. Features include authenticated users, virtual gallery of completed HOV pieces, user stats (how much $ they've invested and how many pieces they have purchased), performative ecommerce, a guestbook to sign, an almost endless scroll, and a live updating price.
 Built with Google Firebase Firestore, SwiftUI, and Python.
 
 ## Project Status
